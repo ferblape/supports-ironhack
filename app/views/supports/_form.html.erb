@@ -1,0 +1,10 @@
+<% @support.errors.full_messages.each do |error| %>
+  <p class="error"><%= error %></p>
+<% end %>
+
+<%= form_for [@challenge, @support], html: {class: 'pure-form'} do |f| %>
+  <fieldset>
+    <%= f.text_field :email, placeholder: 'E-mail', size: 30 %>
+    <%= f.submit 'Apoyar', class: 'pure-button pure-button-primary' %>
+  </fieldset>
+<% end %>

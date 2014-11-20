@@ -1,0 +1,26 @@
+<div class="pure-g">
+  <div class="pure-u-4-5">
+
+    <% if in_search? %>
+      <p>Hay <strong><%= pluralize(@challenges.length, 'reto', 'retos') %></strong> para la cadena <em><%= params[:q] %></em>:</p>
+    <% end %>
+
+    <% @challenges.each do |challenge| %>
+      <div class="challenge">
+        <h2><%= link_to(challenge.title, challenge_path(challenge)) %> · <%= link_to('Editar', edit_challenge_path(challenge), class: 'tool') %></h2>
+      </div>
+    <% end %>
+
+    <div class="tools">
+      <p><%= link_to("+ Nuevo reto", new_challenge_path) %></p>
+    </div>
+
+  </div>
+
+  <div class="pure-u-1-5">
+    <%= form_tag challenges_path, method: :get, class: "pure-form" do %>
+      <%= search_field_tag :q, params[:q], placeholder: "Busca un reto" %>
+    <% end %>
+  </div>
+
+</div>

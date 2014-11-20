@@ -1,0 +1,13 @@
+<%= form_for @challenge, html: {class: 'pure-form'} do |f| %>
+  <fieldset>
+    <%= f.label :title %>
+    <%= f.text_field :title, size: 50 %>
+
+    <%= f.label :body %>
+    <%= f.text_area :body, rows: 20, cols: 80 %>
+
+    <br><br>
+
+    <%= f.submit 'Save', class: 'pure-button pure-button-primary' %>
+  </fieldset>
+<% end %>
