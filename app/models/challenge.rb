@@ -1,8 +1,8 @@
 class Challenge < ActiveRecord::Base
   has_many :supports
 
-  validates :title, presence: true, length: {minumum: 3}
-  validates :body, presence: true, length: {minumum: 30}
+  validates :title, presence: true, length: {minimum: 3}
+  validates :body, presence: true, length: {minimum: 30}
 
   before_save :set_body_to_default_value
 
