@@ -1,14 +1,16 @@
 class ChallengesController < ApplicationController
+  before_filter :load_challenge, except: [:index, :new]
+
   def index
-    @challenges = if params[:q]
-                      Challenge.order(id: :desc).limit(10).where("title like '%#{params[:q]}%'")
-                    else
-                      Challenge.order(id: :desc).limit(10)
-                    end
+    @challenges = Challenge.order(id: :desc).limit(10)
+
+    if params[:q].present?
+      q = "%#{params[:q]}%"
+      @challenges = @challenges.where("title ilike ?", q)
+    end
   end
 
   def show
-    @challenge = Challenge.find params[:id]
     @support = @challenge.supports.new
   end
 
@@ -27,11 +29,9 @@ class ChallengesController < ApplicationController
   end
 
   def edit
-    @challenge = Challenge.find params[:id]
   end
 
   def update
-    @challenge = Challenge.find params[:id]
     if @challenge.update_attributes(challenge_params)
       flash.notice = "Reto actualizado correctamente"
       redirect_to challenge_path(@challenge)
@@ -44,6 +44,10 @@ class ChallengesController < ApplicationController
 
   def challenge_params
     params.require(:challenge).permit(:title, :body)
+  end
+
+  def load_challenge
+    @challenge = Challenge.find params[:id]
   end
 
 end
