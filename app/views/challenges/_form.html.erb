@@ -1,7 +1,10 @@
-<%= form_for @challenge, html: {class: 'pure-form'} do |f| %>
+<%= form_for @challenge, html: {class: 'pure-form', multipart: true} do |f| %>
   <fieldset>
     <%= f.label :title %>
     <%= f.text_field :title, size: 50 %>
+
+    <%= f.label :poster %>
+    <%= f.file_field :poster %>
 
     <%= f.label :body %>
     <%= f.text_area :body, rows: 20, cols: 80 %>

@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+#
+
+1.upto(100) do |i|
+  Challenge.create! title: "Reto #{i}", body: "Bla bla bla"*30
+end

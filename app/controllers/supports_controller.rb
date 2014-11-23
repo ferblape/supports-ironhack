@@ -3,8 +3,9 @@ class SupportsController < ApplicationController
     @challenge = Challenge.find params[:challenge_id]
     @support = @challenge.supports.new challenge_params
     if @support.save
-      flash.notice = 'Gracias por tu apoyo'
-      redirect_to challenge_path(@challenge)
+      UserMailer.new_support(@challenge, @support).deliver
+
+      redirect_to challenge_path(@challenge), notice: 'Gracias por tu apoyo'
     else
       render 'challenges/show'
     end

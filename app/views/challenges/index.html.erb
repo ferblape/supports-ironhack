@@ -9,6 +9,14 @@
       <%= render partial: 'challenge', locals: {challenge: challenge} %>
     <% end %>
 
+    <% if previous_page? %>
+      <%= link_to('← Anterior', challenges_path(page: previous_page)) %>
+    <% end %>
+
+    <% if next_page? %>
+      <%= link_to('Siguiente ➞', challenges_path(page: next_page)) %>
+    <% end %>
+
     <div class="tools">
       <p><%= link_to("+ Nuevo reto", new_challenge_path) %></p>
     </div>

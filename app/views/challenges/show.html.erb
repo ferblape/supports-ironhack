@@ -3,6 +3,9 @@
 
     <div class="challenge">
       <h2><%= @challenge.title %></h2>
+      <p>
+        <%= image_tag @challenge.poster.url %>
+      </p>
       <%= simple_format(@challenge.body) %>
     </div>
 

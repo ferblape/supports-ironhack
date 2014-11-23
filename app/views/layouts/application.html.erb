@@ -10,11 +10,21 @@
   <div id="wrapper">
     <header>
       <h1><%= link_to('Apoya un reto', challenges_path) %></h1>
+      <img src="https://dl.dropboxusercontent.com/u/659167/poolparty.gif" />
     </header>
 
     <%= flash_message %>
 
     <%= yield %>
+
+    <div class="last_created pure-u-3-5">
+      <h3>Últimos retos creados</h3>
+      <ul>
+        <% @last_challenges.each do |challenge| %>
+          <li><%= link_to challenge.title, challenge_path(challenge) %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </body>
 </html>
